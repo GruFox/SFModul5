@@ -2,8 +2,9 @@
 {
     internal class Program
     {
-        static int[] GetArrayFromConsole(int num = 5)
+        static int[] GetArrayFromConsole(ref int num)
         {
+            num = 6;
             var result = new int[num];
 
             for (int i = 0; i < result.Length; i++)
@@ -13,22 +14,50 @@
             }
             return result;
         }
-        static int[] SortArray(int[] arr)
-        {            
-            for (int i = 0; i < arr.Length; i++)
+
+
+        static void SortArray(in int[] arr, out int[] ArrDesc, out int[] ArrAsc)
+        {
+            ArrDesc = SortArrayDesc(arr);
+            ArrAsc = SortArrayAsc(arr);       
+        }
+        static int[] SortArrayDesc(int[] ArrDesc)
+        {
+            for (int i = 0; i < ArrDesc.Length; i++)
             {
-                for (int j = i + 1; j < arr.Length; j++)
+                for (int j = i + 1; j < ArrDesc.Length; j++)
                 {
-                    if (arr[i] > arr[j])
+                    if (ArrDesc[i] > ArrDesc[j])
                     {
-                        int first = arr[i];
-                        arr[i] = arr[j];
-                        arr[j] = first;
+                        int first = ArrDesc[i];
+                        ArrDesc[i] = ArrDesc[j];
+                        ArrDesc[j] = first;
                     }
                 }
             }
-            return arr;
+            return ArrDesc;
         }
+        static int[] SortArrayAsc(int[] ArrAsc)
+        {
+            for (int i = 0; i < ArrAsc.Length; i++)
+            {
+                for (int j = i + 1; j < ArrAsc.Length; j++)
+                {
+                    if (ArrAsc[i] < ArrAsc[j])
+                    {
+                        int first = ArrAsc[i];
+                        ArrAsc[i] = ArrAsc[j];
+                        ArrAsc[j] = first;
+                    }
+                }
+            }
+            return ArrAsc;
+        }
+
+
+
+
+
 
         static void ShowArray(int[] numbers, bool IsSort = false)
         {
@@ -49,6 +78,25 @@
         }
 
 
+        static void GetName(ref string name)
+        {
+            Console.Write("Введите имя: ");
+            name = Console.ReadLine();
+        }
+
+        static void ChangeAge(int age)
+        {
+            age++;
+            Console.WriteLine(age);
+        }
+
+
+
+
+        static void BigDataOperation(in int[] arr)
+        {
+            arr[0] = 4;
+        }
 
 
 
@@ -94,11 +142,32 @@
 
         static void Main(string[] args)            
         {
-            var array = GetArrayFromConsole(10);
-
-            ShowArray(array, true);
 
 
+
+
+
+
+            //int num = 10;
+            //var array = GetArrayFromConsole(ref num);
+            //Console.WriteLine(num);
+
+            //ShowArray(array, true);
+
+            /*var someName = "Евгения";
+            Console.WriteLine(someName);
+            GetName(ref someName);
+            Console.WriteLine(someName);
+            
+            Console.Write("Введите возраст: ");
+            var someAge = int.Parse(Console.ReadLine());
+            ChangeAge(someAge);
+            Console.WriteLine(someAge);*/
+
+            //var arr = new int[] {1, 2, 3};
+            //BigDataOperation(arr);
+
+            //Console.WriteLine(arr[0]);
 
 
             /*var (name, age) = ("Igor", 38);
