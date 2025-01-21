@@ -59,7 +59,7 @@
 
 
 
-        static void ShowArray(int[] numbers, bool IsSort = false)
+        /*static void ShowArray(int[] numbers, bool IsSort = false)
         {
             foreach (int WriteNumbers in numbers)
             {
@@ -75,7 +75,7 @@
                     Console.Write(SortWriteNumbers + " ");
                 }
             }          
-        }
+        }*/
 
 
         static void GetName(ref string name)
@@ -104,44 +104,136 @@
 
         static string ShowColor(string username, int userage)
         {
-            Console.WriteLine(username + ", " + userage + " лет.\nНапишите свой любимый цвет на английском языке с маленькой буквы:");
-            string color = Console.ReadLine();
+            //Console.WriteLine(username + ", " + userage + " лет.\nНапишите свой любимый цвет на английском языке с маленькой буквы:");
+            //string color = Console.ReadLine();
 
-            switch(color)
+            int other = userage += 3;
+
+            switch (userage | other)
             {
-                case "red":
+                case 2:
                     Console.BackgroundColor = ConsoleColor.Red;
                     Console.ForegroundColor = ConsoleColor.Black;
 
-                    Console.WriteLine("Your color is red!");
                     break;
 
-                case "green":
+                case 3:
                     Console.BackgroundColor = ConsoleColor.Green;
                     Console.ForegroundColor = ConsoleColor.Black;
 
-                    Console.WriteLine("Your color is green!");
                     break;
 
-                case "cyan":
+                case 4:
                     Console.BackgroundColor = ConsoleColor.Cyan;
                     Console.ForegroundColor = ConsoleColor.Black;
 
-                    Console.WriteLine("Your color is cyan!");
+                    break;
+
+                case 5:
+                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.ForegroundColor = ConsoleColor.Black;
+
                     break;
 
                 default:
                     Console.BackgroundColor = ConsoleColor.Yellow;
                     Console.ForegroundColor = ConsoleColor.Red;
 
-                    Console.WriteLine("Your color is yellow!");
                     break;
             }
-            return color;
+            return username;
         }
+
+
+
+
+        static void Echo(string saidword, int deep)
+        {
+            var modif = saidword;
+
+            if (modif.Length > 2)
+            {
+                modif = modif.Remove(0, 2);
+                Console.BackgroundColor = (ConsoleColor)deep;
+                Console.ForegroundColor = ConsoleColor.Black;
+                //ShowColor(modif, deep);
+                Console.WriteLine("..." + modif);
+            }
+
+            if (deep > 1)
+            {
+                Echo(modif, deep - 1);
+            }
+        }
+
+
+
+
+
+        static decimal Factorial(int x)
+        {
+            if (x == 0)
+            {
+                return 1;
+            }
+
+            else
+            {
+                return x * Factorial(x - 1);
+            }
+        }
+
+
+        private static int PowerUp(int N, byte pow)
+        {            
+            if (pow == 0)
+            {
+                return 1;
+            }
+            if (pow == 1)
+            {
+                return N;
+            }
+            else
+            {
+                return N * PowerUp(N, --pow);
+            }
+        }
+
+
+
+
+
 
         static void Main(string[] args)            
         {
+
+            Console.Write("Введите число: ");
+            var N = int.Parse(Console.ReadLine());
+
+            Console.Write("Введите степень: ");
+            var pow = byte.Parse(Console.ReadLine());
+
+            Console.WriteLine(PowerUp(N, pow));
+
+
+
+
+
+            //var value = 20;
+            //Console.WriteLine(Factorial(value));
+
+
+
+
+            /*Console.WriteLine("Напишите что-то");
+            var str = Console.ReadLine();
+
+            Console.WriteLine("Укажите глубину эха");
+            var deep = int.Parse(Console.ReadLine());
+
+            Echo(str, deep);*/
+
 
 
 
